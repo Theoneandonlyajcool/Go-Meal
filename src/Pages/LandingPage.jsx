@@ -1,9 +1,9 @@
-import React from "react";
+import Header from "../Components/Header/Header";
 
 const LandingPage = () => {
   return (
     <div>
-      <h1>Welcome to the Landing page</h1>
+      <Header />
     </div>
   );
 };
