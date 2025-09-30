@@ -4,4 +4,10 @@
   padding: 0.5rem 2rem;
   border-radius: 1rem;
   color: white;
+  cursor: pointer;
+  transition: all ease-in-out 0.5s;
+}
+
+.locations_btn:hover {
+  background-color: #e42705;
 }

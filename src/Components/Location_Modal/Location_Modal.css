@@ -1,12 +1,17 @@
 .Location_modal_bg {
-  background-color: rgba(127, 127, 127, 0.319);
+  background-color: rgba(255, 10, 10, 0.532);
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Location_modal_cont {
-  width: ;
+  width: 40%;
+  height: 80%;
+  background-color: white;
 }

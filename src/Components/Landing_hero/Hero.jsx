@@ -63,7 +63,9 @@ const Hero = () => {
           <img className="hero_side_image" src={HeroSideImage} alt="" />
         </div>
 
-        {Show_Location_Modal && <Location_Modal />}
+        {Show_Location_Modal && (
+          <Location_Modal toclose={Set_Show_Location_Modal} />
+        )}
       </div>
     </div>
   );
