@@ -1,0 +1,14 @@
+.delivery_locations_cont {
+  border: 2px solid red;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delivery_locations_child {
+  border: 2px solid blue;
+  width: 100%;
+  max-width: 90%;
+  height: 100%;
+}
