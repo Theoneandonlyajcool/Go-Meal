@@ -28,7 +28,11 @@ const Header = () => {
   const [MobileMenu, SetMobileMenu] = useState(false);
   const [CartItems, SetCartItems] = useState([]);
   const [DisplayCartItems, SetDisplayCartItems] = useState(false);
-  const [SignUp, SetSignUp] = useState(true);
+  const [SignUp, SetSignUp] = useState(false);
+  const [OTP_Verification, Set_OTP_Verification] = useState(false);
+
+  // OTP Counter
+  let OTP_count = 59;
 
   const Validation = () => {
     // if (InputValues.firstName == "") {
@@ -108,7 +112,16 @@ const Header = () => {
     if (Validation()) {
       console.log("Form submitted succesfully");
       console.log(InputValues);
+      SetInputValues({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phNumber: "",
+        psw: "",
+        confirmPsw: "",
+      });
       SetSignUp(false);
+      Set_OTP_Verification(true);
     } else {
       console.log("An error occured");
     }
@@ -486,6 +499,45 @@ const Header = () => {
             </div>
           )}
         </div>
+
+        {/* OTP Verification */}
+
+        {OTP_Verification && (
+          <div className="OTP_bg">
+            <div className="OTP_form_bg">
+              {/*  */}
+              <div className="OTP_form_child">
+                {/* Heading */}
+
+                <div className="OTP_heading">
+                  <p style={{ fontSize: "1.5rem" }}>Verify Account</p>
+                  <p>Please input code sent to your email</p>
+                </div>
+
+                {/* Inputs */}
+                <div className="OTP_inputs_cont">
+                  <input type="text" className="OTP_inputs" maxLength={1} />
+                  <input type="text" className="OTP_inputs" maxLength={1} />
+                  <input type="text" className="OTP_inputs" maxLength={1} />
+                  <input type="text" className="OTP_inputs" maxLength={1} />
+                </div>
+
+                {/* Finish button */}
+                <button
+                  className="OTP_btn"
+                  onClick={() => Set_OTP_Verification(false)}
+                >
+                  Finish sign up
+                </button>
+
+                {/* Resend code  */}
+                <div>
+                  <p>Resend code in 00:{OTP_count}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Mobile nav */}
 
