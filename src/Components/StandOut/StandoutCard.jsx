@@ -1,9 +1,16 @@
 import "./StandoutCard.css";
 
-const StandoutCard = () => {
+const StandoutCard = ({ contents }) => {
   return (
     <div className="standout_card_cont">
-      <div className="standout_card_child"></div>
+      {/* image */}
+      <div className="standoout_image_cont"></div>
+
+      {/* text */}
+      <div className="standout_text_cont">
+        <h3>{contents.heading}</h3>
+        <p>{contents.paragraph}</p>
+      </div>
     </div>
   );
 };
