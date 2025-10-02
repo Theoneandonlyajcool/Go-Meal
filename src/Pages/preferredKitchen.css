@@ -1,0 +1,168 @@
+.preferred-kitchen-container {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+.hero-section {
+  position: relative;
+  height: 256px;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.back-button {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-title {
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 16px;
+}
+
+
+.kitchen-grid-container {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
+
+.kitchen-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .kitchen-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.kitchen-card {
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.kitchen-card:hover {
+  border: 2px solid #dc2626;
+}
+
+.kitchen-card.selected {
+  box-shadow: 0 0 0 4px #f97316;
+}
+
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.logo-circle {
+  width: 192px;
+  height: 192px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.logo-red {
+  background-color: #dc2626;
+}
+
+.logo-gray {
+  background-color: #4b5563;
+}
+
+.logo-orange {
+  background-color: #f97316;
+}
+
+.logo-black {
+  background-color: #000000;
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.kitchen-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+
+.kitchen-description {
+  text-align: center;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 0 16px;
+}
+
+
+@media (max-width: 767px) {
+  .hero-title {
+    font-size: 32px;
+  }
+  
+  .logo-circle {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .kitchen-name {
+    font-size: 20px;
+  }
+}
