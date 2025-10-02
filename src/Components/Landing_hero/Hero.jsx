@@ -15,11 +15,12 @@ const Hero = () => {
 
         <div className="left_side_cont">
           {/* Texts */}
-          <div>
+
+          <div className="hero_page_heading_cont">
             {/* Headings  */}
 
-            <div>
-              <h1>Breakfast Made Easy</h1>
+            <div className="hero_page_heading">
+              <h1 className="hero_page_first_heading">Breakfast Made Easy</h1>
               <h1>
                 Quick, Nutritious, <br /> and Hassle-Free
               </h1>
@@ -38,9 +39,12 @@ const Hero = () => {
           {/* Search location */}
           <div>
             <div className="location_input_cont">
+              {/* location icon */}
               <CiLocationOn
                 style={{ fontSize: "1.5rem", color: "rgba(28, 28, 28, 1)" }}
               />
+
+              {/* localtion */}
               <p
                 style={{
                   display: "flex",
@@ -53,6 +57,8 @@ const Hero = () => {
               >
                 Select your location <IoChevronDown />
               </p>
+
+              {/* button */}
               <button className="Hero_search_location_btn">Order Now</button>
             </div>
           </div>

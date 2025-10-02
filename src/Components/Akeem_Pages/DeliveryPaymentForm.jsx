@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { MapPin, Smartphone, CreditCard, ChevronDown } from "lucide-react";
 import "./DeliveryPaymentForm.css";
+import Location_Modal from "../Location_Modal/Location_Modal";
 
 export default function DeliveryPaymentForm() {
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState(false);
   const [phone, setPhone] = useState("Add your phone number");
   const [paymentMethod, setPaymentMethod] = useState("");
 
@@ -13,14 +14,13 @@ export default function DeliveryPaymentForm() {
       <div className="section">
         <h1 className="section-title">Delivery Address</h1>
 
-        <div
-          className="location-dropdown"
-          onClick={() => console.log("Open location picker")}
-        >
+        <div className="location-dropdown" onClick={() => setLocation(true)}>
           <MapPin size={20} color="#000" />
           <span className="location-text">Select your location</span>
           <ChevronDown size={20} color="#000" />
         </div>
+
+        {location && <Location_Modal toclose={setLocation} />}
 
         <div className="phone-input-wrapper">
           <Smartphone size={24} color="#000" className="phone-icon" />
