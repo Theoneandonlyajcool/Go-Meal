@@ -6,6 +6,7 @@ import KaylizsKitchen from "../Pages/KaylizsKitchen";
 import MamaKitchen from "../Pages/MamaKitchen";
 import PreferredKitchen from "../Pages/PreferredKitchen";
 import RennesKitchen from "../Pages/RennesKitchen";
+import AkeemKitchens from "../Pages/AkeemKitchens";
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
           <Route path="/mama" element={<MamaKitchen />}></Route>
           <Route path="/preffered" element={<PreferredKitchen />}></Route>
           <Route path="/Rennes" element={<RennesKitchen />}></Route>
+          <Route path="/KitchenPay" element={<AkeemKitchens />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
