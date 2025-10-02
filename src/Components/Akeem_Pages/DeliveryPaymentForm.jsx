@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { MapPin, Smartphone, CreditCard, ChevronDown } from "lucide-react";
 import "./DeliveryPaymentForm.css";
 import Location_Modal from "../Location_Modal/Location_Modal";
+import PaymentModal from "../../Components/PaymentModal/PaymentModal";
 
 export default function DeliveryPaymentForm() {
   const [location, setLocation] = useState(false);
   const [phone, setPhone] = useState("Add your phone number");
-  const [paymentMethod, setPaymentMethod] = useState("");
+  const [ShowPaymentModal, SetShowPaymentModal] = useState(true);
 
   return (
     <div className="container">
@@ -48,6 +49,10 @@ export default function DeliveryPaymentForm() {
           </div>
           <ChevronDown size={20} color="#000" />
         </div>
+
+        {ShowPaymentModal && (
+          <PaymentModal closePaymentModal={SetShowPaymentModal} />
+        )}
 
         <p className="required-text">Required field</p>
       </div>

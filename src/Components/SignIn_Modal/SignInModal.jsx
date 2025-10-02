@@ -17,6 +17,10 @@ const SignInModal = ({ closeSignInModal, openSignUpModal }) => {
     if (SignInInputValues.email == "") {
       toast.error("email is required");
     }
+
+    // if(){
+
+    // }
   };
 
   const HandleSubmit = (e) => {
