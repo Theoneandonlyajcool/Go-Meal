@@ -47,7 +47,7 @@ const StandOut = () => {
           <h1 className="standout_heading">What Makes Us Stand Out</h1>
           <p className="standout_paragraph">
             We're redefining mornings with fresh, and reliable breakfast
-            delivery built for your busy lifestyle
+            delivery <br /> built for your busy lifestyle
           </p>
         </div>
 

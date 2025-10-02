@@ -2,8 +2,11 @@ import React from "react";
 import { X } from "lucide-react";
 import "./Paymodal.css";
 import {} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Paymodal = ({ closingOfPayModal }) => {
+  const navigate = useNavigate();
+
   const handleClose = () => {
     console.log("Close modal");
   };
@@ -24,7 +27,13 @@ const Paymodal = ({ closingOfPayModal }) => {
           Please Proceed to The restaurant and pick up your order
         </p>
 
-        <button className="home-button" onClick={handleBackToHome}>
+        <button
+          className="home-button"
+          onClick={() => {
+            handleBackToHome();
+            navigate("/");
+          }}
+        >
           Back to home
         </button>
       </div>

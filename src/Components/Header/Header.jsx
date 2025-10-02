@@ -5,6 +5,10 @@ import { MdOutlineShoppingCart, MdClose } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 import { GrMenu } from "react-icons/gr";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import SignInModal from "../SignIn_Modal/SignInModal";
+import { TbRuler2Off } from "react-icons/tb";
+import { ToastContainer, toast } from "react-toastify";
+import { IoChevronForwardOutline } from "react-icons/io5";
 
 const Header = () => {
   const [InputValues, SetInputValues] = useState({
@@ -29,6 +33,7 @@ const Header = () => {
   const [CartItems, SetCartItems] = useState([]);
   const [DisplayCartItems, SetDisplayCartItems] = useState(false);
   const [SignUp, SetSignUp] = useState(false);
+  const [SignInState, SetSignInState] = useState(false);
   const [OTP_Verification, Set_OTP_Verification] = useState(false);
 
   // OTP Counter
@@ -105,25 +110,55 @@ const Header = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const BASEURL = "https://go-meal-group3-projectwork.onrender.com/api/v1";
+  const formData = new FormData();
+  formData.append("firstName", InputValues.firstName);
+  formData.append("lastName", InputValues.lastName);
+  formData.append("email", InputValues.email);
+  formData.append("phoneNumber", InputValues.phNumber);
+  formData.append("password", InputValues.psw);
+  formData.append("confirmPassword", InputValues.confirmPsw);
+
+  const [SignState, SetSignState] = useState(false);
+
+  const SignUpPostRequest = async () => {
+    try {
+      SetSignState(true);
+      const res = await fetch(
+        `https://go-meal-group3-projectwork.onrender.com/api/v1/register`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      toast.success("Form submitted succesfully");
+      SetSignState(false);
+      SetSignUp(false);
+      Set_OTP_Verification(true);
+    } catch (error) {
+      console.log(`An error occured ${error}`);
+      toast.error("An error occured");
+    }
+  };
+
   const HandleSubmit = (e) => {
     e.preventDefault();
     // console.log("Form Submitted");
 
     if (Validation()) {
-      console.log("Form submitted succesfully");
       console.log(InputValues);
-      SetInputValues({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phNumber: "",
-        psw: "",
-        confirmPsw: "",
-      });
-      SetSignUp(false);
-      Set_OTP_Verification(true);
+      SignUpPostRequest();
+      // SetInputValues({
+      //   firstName: "",
+      //   lastName: "",
+      //   email: "",
+      //   phNumber: "",
+      //   psw: "",
+      //   confirmPsw: "",
+      // });
     } else {
-      console.log("An error occured");
+      console.log("Validation error");
     }
   };
 
@@ -150,6 +185,8 @@ const Header = () => {
               style={{ fontSize: "1.2rem", color: "rgb(58, 58, 58)" }}
             />
           </div>
+
+          <ToastContainer />
 
           {/* Cart and user */}
 
@@ -257,7 +294,10 @@ const Header = () => {
                 <div className="sign_up_child">
                   {/* image and form headeing */}
                   <div className="form_heading">
-                    <img src="/Images/Mask group (1).png" alt="" />
+                    <img
+                      src="https://res.cloudinary.com/dp75oveuw/image/upload/v1759329276/Mask_group_1_c8le7k.png"
+                      alt=""
+                    />
                     <div
                       style={{
                         display: "flex",
@@ -478,11 +518,23 @@ const Header = () => {
                     </div>
 
                     <button className="sign_up_btn" style={{ width: "100%" }}>
-                      Sign up
+                      {SignState ? "Signing in ......" : "Sign in"}
                     </button>
-                    <p>
+
+                    <a
+                      href="#"
+                      style={{
+                        // color: "#f54222",
+                        // textDecoration: "none",
+                        color: "black",
+                      }}
+                      onClick={() => {
+                        SetSignUp(false);
+                        SetSignInState(true);
+                      }}
+                    >
                       Already have an account ? <b>Sign in</b>{" "}
-                    </p>
+                    </a>
 
                     {/*  */}
                   </form>
@@ -497,6 +549,15 @@ const Header = () => {
                 </div>
               </div>
             </div>
+            // End of sign up modal
+          )}
+
+          {/* Sign in modal */}
+          {SignInState && (
+            <SignInModal
+              openSignUpModal={SetSignUp}
+              closeSignInModal={SetSignInState}
+            />
           )}
         </div>
 
@@ -556,11 +617,38 @@ const Header = () => {
             <div className="mobile_menu_cont">
               <div className="mobile_menu_card_cont">
                 {/* Close mobile card*/}
-                <div>
+                <div
+                  style={{
+                    border: "2px solid red",
+                    display: "flex",
+                    height: "10%",
+                    alignItems: "center",
+                    justifyContent: "end",
+                  }}
+                >
                   <MdClose
-                    style={{ fontSize: "2rem" }}
+                    style={{ fontSize: "2rem", cursor: "pointer" }}
                     onClick={() => SetMobileMenu(false)}
                   />
+                </div>
+
+                {/* content */}
+                <div className="header_mobile_menu_content">
+                  <div className="header_mobile_menu_child">
+                    {/* Sign in */}
+
+                    <div className="mobile_cont">
+                      <p>Sign Up</p>
+                      <IoChevronForwardOutline className="mobile_cont_chevs" />
+                    </div>
+
+                    {/* Log in */}
+
+                    <div className="mobile_cont">
+                      <p>Log in </p>
+                      <IoChevronForwardOutline className="mobile_cont_chevs" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
