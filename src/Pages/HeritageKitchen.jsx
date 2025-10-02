@@ -1,5 +1,5 @@
-import React from "react";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import React, { useState } from "react";
+import { MdCancel, MdOutlineShoppingCart } from "react-icons/md";
 import { IoStar } from "react-icons/io5";
 import { IoCarSportSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -7,6 +7,8 @@ import "../Pages/HeritageKitchen.css"
 import { useNavigate } from "react-router-dom";
 
 const HeritageKitchen = () => {
+
+    const [model, setModel] = useState(false);
 
   const navigate = useNavigate()
 
@@ -76,7 +78,7 @@ const HeritageKitchen = () => {
                 </div>
             </div>
             <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
+                <button className='btn00091' onClick={()=> setModel(true)}>Order Now</button>
             </div>
             </div>
             <div className="meal-table-box">
@@ -289,7 +291,7 @@ const HeritageKitchen = () => {
                 </div>
             </div>
             <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
+                <button className='btn00091'  onClick={()=> setModel(true)}>Order Now</button>
             </div>
             </div>
 
@@ -334,7 +336,7 @@ const HeritageKitchen = () => {
                 </div>
             </div>
             <div className="Beverage-meal-table-images-text-btn">
-                <button className='Beverage-btn00091'>Order Now</button>
+                <button className='Beverage-btn00091'  onClick={()=> setModel(true)}>Order Now</button>
             </div>
             </div>
             
@@ -346,6 +348,49 @@ const HeritageKitchen = () => {
         </div>
         
       </div>
+
+
+
+
+
+
+      {
+            model && (
+                <div className="model-background-back">
+                    <div className="model-block01">
+                    <div className="image-holder-model">
+                        <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759413064/748750610b538c0315d185d9820a2fdfee97cf45_czkpwe.jpg" alt=""  className='model-img'/>
+
+                        <div className="close-model-22" >
+                            <MdCancel  onClick={()=> setModel(false)}/>
+                        </div>
+                        <div className="model-text-wrap">
+                            <div className="model-discretion">
+                                <p>Pap And Akara</p>
+                                <span>Sausage Roll With a glass of orange juice </span>
+                            </div>
+                            <div className="model-drive">
+                                <span className='molde-car01'><IoCarSportSharp /></span>
+                                <span>20 - 30 mins</span>
+                            </div>                          
+                        </div>
+                        <div className="model-price1">
+                            <span>₦2,500</span>
+                        </div>
+                        <div className="count-payment">
+                            <div className="count-model-qty">
+                                <span>-</span>
+                                <span>1</span>
+                                <span>+</span>
+                            </div>
+                            <button>Proceed to checkout</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            )
+        }
+
     </>
   );
 };

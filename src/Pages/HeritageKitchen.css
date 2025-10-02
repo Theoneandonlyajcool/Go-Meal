@@ -295,8 +295,8 @@
 }
 
 .btn00091{
-    width: 108px;
-    height: 25px;
+    width: 278px;
+    height: 30px;
     color: white;
     background-color: transparent;
     font-family: inter;
@@ -481,8 +481,8 @@
 }
 
 .Beverage-btn00091{
-    width: 108px;
-    height: 25px;
+    width: 278px;
+    height: 30px;
     color: white;
     background-color: transparent;
     /* background: transparent; */
@@ -494,6 +494,10 @@
     border: none;
     cursor: pointer;
 }
+
+
+
+
 
 /* @media screen and (max-width: 500px) {} */
 @media screen and (max-width: 390px) {
