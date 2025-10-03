@@ -4,6 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 10;
   /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
 }
 
@@ -367,5 +372,8 @@
 @media screen and (max-width: 500px) {
   .mobile_menu_card_cont {
     width: 100%;
+  }
+  .Header_cont {
+    height: 10vh;
   }
 }

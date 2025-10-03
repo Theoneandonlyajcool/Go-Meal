@@ -1,14 +1,66 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdCancel, MdOutlineShoppingCart } from "react-icons/md";
 import { IoStar } from "react-icons/io5";
 import { IoCarSportSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import "./KaylizsKitchen.css"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const KaylizsKitchen = () => {
 
+    const [getproduct, setGetproduct] = useState([]);
+    const [buyproduct, setBuyproduct] = useState([]);
+    const [product, setProduct] = useState([]);
+
     const [model, setModel] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null)
+
+    const Classickay = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c6c890bbac3b5f76b6")
+            setGetproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Classickay()
+    }, [])
+
+    const Quick = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c6c890bbac3b5f76b7")
+            setBuyproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Quick()
+    }, [])
+
+
+    const Beverage = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c6c890bbac3b5f76b8")
+            setProduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Beverage()
+    }, [])
 
   const navigate = useNavigate()
 
@@ -55,16 +107,18 @@ const KaylizsKitchen = () => {
 
             {/* Classic & Comfort Breakfasts 66 */}
 
-            <div className="Kayliz-meal-table-box">
+            {
+                getproduct?.map((item)=> (
+                    <div className="Kayliz-meal-table-box" key={item._id}>
             <div className="Kayliz-meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759232593/5984649553a31dcf921c89f5304c86f3_irdbk4.jpg" alt=""  className='Kayliz-meal-table-images-image'/>
+                <img src={item.productImage} alt=""  className='Kayliz-meal-table-images-image'/>
                 <div className="Kayliz-meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Kayliz-naira' alt="" />1,500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Kayliz-naira' alt="" />{item.price}</span>
                 </div>
             </div>
             <div className="Kayliz-meal-table-images-text">
                 <div className="Kayliz-text-00091">
-                    <p>Pancake with Egg</p>
+                    <p>{item.productName}</p>
                 </div>
                 <div className="Kayliz-text-00092-cart">
                     <div className="Kayliz-text-cart-text">
@@ -77,9 +131,13 @@ const KaylizsKitchen = () => {
                 </div>
             </div>
             <div className="Kayliz-meal-table-images-text-btn">
-                <button className='Kayliz-btn00091' onClick={()=> setModel(true)}>Order Now</button>
+                <button className='Kayliz-btn00091' onClick={()=> {setModel(true); setSelectedProduct(item);}}>Order Now</button>
             </div>
             </div>
+                ))
+            }
+
+            
             
             </div>
             {/* Classic & Comfort Breakfasts 66 ending*/}
@@ -93,16 +151,18 @@ const KaylizsKitchen = () => {
             
             {/* Quick Grab-and-Go 88 */}
 
-            <div className="Kayliz-meal-table-box">
+            {
+                buyproduct?.map((ites)=> (
+                    <div className="Kayliz-meal-table-box"  key={ites._id}>
             <div className="Kayliz-meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759247796/3d652507bc3b3a35907bfff003aead79_va8pvy.jpg" alt=""  className='Kayliz-meal-table-images-image'/>
+                <img src={ites.productImage} alt=""  className='Kayliz-meal-table-images-image'/>
                 <div className="Kayliz-meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Kayliz-naira' alt="" />1,500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Kayliz-naira' alt="" />{ites.price}</span>
                 </div>
             </div>
             <div className="Kayliz-meal-table-images-text">
                 <div className="Kayliz-text-00091">
-                    <p>Scrambled Bowl</p>
+                    <p>{ites.productName}</p>
                 </div>
                 <div className="Kayliz-text-00092-cart">
                     <div className="Kayliz-text-cart-text">
@@ -115,9 +175,13 @@ const KaylizsKitchen = () => {
                 </div>
             </div>
             <div className="Kayliz-meal-table-images-text-btn">
-                <button className='Kayliz-btn00091'  onClick={()=> setModel(true)}>Order Now</button>
+                <button className='Kayliz-btn00091'  onClick={()=> {setModel(true); setSelectedProduct(ites);}}>Order Now</button>
             </div>
             </div>
+                ))
+            }
+
+            
 
             {/* Quick Grab-and-Go 88 */}
             
@@ -137,17 +201,18 @@ const KaylizsKitchen = () => {
             </div>
             <div className="Kayliz-Beverage-meal-table-cover">
 
-
-            <div className="Kayliz-Beverage-meal-table-box">
+            {
+               product?.map((goods)=> (
+                    <div className="Kayliz-Beverage-meal-table-box"  key={goods._id}>
             <div className="Kayliz-Beverage-meal-table-images">
                 <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759095543/bab6f1e994869aed15f8cf6418867e76f5200532_nyze0v.jpg" alt="food"  className='Kayliz-Beverage-meal-table-images-image'/>
                 <div className="Kayliz-Beverage-meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Kayliz-Beverage-naira' alt="Naira" />500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Kayliz-Beverage-naira' alt="Naira" />{goods.price}</span>
                 </div>
             </div>
             <div className="Kayliz-Beverage-meal-table-images-text">
                 <div className="Kayliz-Beverage-text-00091">
-                    <p>Bottle Water</p>
+                    <p>{goods.productName}</p>
                 </div>
                 <div className="Kayliz-Beverage-text-00092-cart">
                     <div className="Kayliz-Beverage-text-cart-text">
@@ -160,9 +225,13 @@ const KaylizsKitchen = () => {
                 </div>
             </div>
             <div className="Kayliz-Beverage-meal-table-images-text-btn">
-                <button className='Kayliz-Beverage-btn00091'  onClick={()=> setModel(true)}>Order Now</button>
+                <button className='Kayliz-Beverage-btn00091'  onClick={()=> {setModel(true); setSelectedProduct(goods);}}>Order Now</button>
             </div>
             </div>
+               )) 
+            }
+
+            
             
             </div>
             </div>
@@ -187,7 +256,7 @@ const KaylizsKitchen = () => {
                         </div>
                         <div className="model-text-wrap">
                             <div className="model-discretion">
-                                <p>Pap And Akara</p>
+                                <p>{selectedProduct.productName}</p>
                                 <span>Sausage Roll With a glass of orange juice </span>
                             </div>
                             <div className="model-drive">
@@ -196,7 +265,7 @@ const KaylizsKitchen = () => {
                             </div>                          
                         </div>
                         <div className="model-price1">
-                            <span>₦2,500</span>
+                            <span>₦ {selectedProduct.price}</span>
                         </div>
                         <div className="count-payment">
                             <div className="count-model-qty">

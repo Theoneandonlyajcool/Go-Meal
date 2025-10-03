@@ -1,14 +1,66 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdCancel, MdOutlineShoppingCart } from "react-icons/md";
 import { IoStar } from "react-icons/io5";
 import { IoCarSportSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import "../Pages/HeritageKitchen.css"
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const HeritageKitchen = () => {
 
+    const [getproduct, setGetproduct] = useState([]);
+    const [buyproduct, setBuyproduct] = useState([]);
+    const [product, setProduct] = useState([]);
+
     const [model, setModel] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null)
+
+    const Classic = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c4c890bbac3b5f76a4")
+            setGetproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Classic()
+    }, [])
+
+    const Quick = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c4c890bbac3b5f76a5")
+            setBuyproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Quick()
+    }, [])
+
+
+    const Beverage = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c4c890bbac3b5f76a6")
+            setProduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Beverage()
+    }, [])
 
   const navigate = useNavigate()
 
@@ -56,16 +108,18 @@ const HeritageKitchen = () => {
 
             {/* Classic & Comfort Breakfasts 66 */}
 
-            <div className="meal-table-box">
+            {
+                getproduct?.map((item)=> (
+                    <div className="meal-table-box"  key={item._id}>
             <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
+                <img src={item.productImage} alt=""  className='meal-table-images-image'/>
                 <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />{item.price}</span>
                 </div>
             </div>
             <div className="meal-table-images-text">
                 <div className="text-00091">
-                    <p>Custard and Akara</p>
+                    <p>{item.productName}</p>
                 </div>
                 <div className="text-00092-cart">
                     <div className="text-cart-text">
@@ -78,184 +132,11 @@ const HeritageKitchen = () => {
                 </div>
             </div>
             <div className="meal-table-images-text-btn">
-                <button className='btn00091' onClick={()=> setModel(true)}>Order Now</button>
+                <button className='btn00091' onClick={()=> {setModel(true); setSelectedProduct(item);}}>Order Now</button>
             </div>
             </div>
-            <div className="meal-table-box">
-            <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
-                <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
-                </div>
-            </div>
-            <div className="meal-table-images-text">
-                <div className="text-00091">
-                    <p>Custard and Akara</p>
-                </div>
-                <div className="text-00092-cart">
-                    <div className="text-cart-text">
-                        <span>Add to Cart </span>
-                    </div>
-                    <div className="text-cart-icons">
-                        <MdOutlineShoppingCart />
-                    </div>
-                    
-                </div>
-            </div>
-            <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
-            </div>
-            </div>
-            <div className="meal-table-box">
-            <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
-                <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
-                </div>
-            </div>
-            <div className="meal-table-images-text">
-                <div className="text-00091">
-                    <p>Custard and Akara</p>
-                </div>
-                <div className="text-00092-cart">
-                    <div className="text-cart-text">
-                        <span>Add to Cart </span>
-                    </div>
-                    <div className="text-cart-icons">
-                        <MdOutlineShoppingCart />
-                    </div>
-                    
-                </div>
-            </div>
-            <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
-            </div>
-            </div>
-            <div className="meal-table-box">
-            <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
-                <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
-                </div>
-            </div>
-            <div className="meal-table-images-text">
-                <div className="text-00091">
-                    <p>Custard and Akara</p>
-                </div>
-                <div className="text-00092-cart">
-                    <div className="text-cart-text">
-                        <span>Add to Cart </span>
-                    </div>
-                    <div className="text-cart-icons">
-                        <MdOutlineShoppingCart />
-                    </div>
-                    
-                </div>
-            </div>
-            <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
-            </div>
-            </div>
-            <div className="meal-table-box">
-            <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
-                <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
-                </div>
-            </div>
-            <div className="meal-table-images-text">
-                <div className="text-00091">
-                    <p>Custard and Akara</p>
-                </div>
-                <div className="text-00092-cart">
-                    <div className="text-cart-text">
-                        <span>Add to Cart </span>
-                    </div>
-                    <div className="text-cart-icons">
-                        <MdOutlineShoppingCart />
-                    </div>
-                    
-                </div>
-            </div>
-            <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
-            </div>
-            </div>
-            <div className="meal-table-box">
-            <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
-                <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
-                </div>
-            </div>
-            <div className="meal-table-images-text">
-                <div className="text-00091">
-                    <p>Custard and Akara</p>
-                </div>
-                <div className="text-00092-cart">
-                    <div className="text-cart-text">
-                        <span>Add to Cart </span>
-                    </div>
-                    <div className="text-cart-icons">
-                        <MdOutlineShoppingCart />
-                    </div>
-                    
-                </div>
-            </div>
-            <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
-            </div>
-            </div>
-            <div className="meal-table-box">
-            <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
-                <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
-                </div>
-            </div>
-            <div className="meal-table-images-text">
-                <div className="text-00091">
-                    <p>Custard and Akara</p>
-                </div>
-                <div className="text-00092-cart">
-                    <div className="text-cart-text">
-                        <span>Add to Cart </span>
-                    </div>
-                    <div className="text-cart-icons">
-                        <MdOutlineShoppingCart />
-                    </div>
-                    
-                </div>
-            </div>
-            <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
-            </div>
-            </div>
-            <div className="meal-table-box">
-            <div className="meal-table-images">
-                <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg" alt=""  className='meal-table-images-image'/>
-                <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
-                </div>
-            </div>
-            <div className="meal-table-images-text">
-                <div className="text-00091">
-                    <p>Custard and Akara</p>
-                </div>
-                <div className="text-00092-cart">
-                    <div className="text-cart-text">
-                        <span>Add to Cart </span>
-                    </div>
-                    <div className="text-cart-icons">
-                        <MdOutlineShoppingCart />
-                    </div>
-                    
-                </div>
-            </div>
-            <div className="meal-table-images-text-btn">
-                <button className='btn00091'>Order Now</button>
-            </div>
-            </div>
+                ))
+            }
             
             </div>
             {/* Classic & Comfort Breakfasts 66 ending*/}
@@ -269,16 +150,19 @@ const HeritageKitchen = () => {
             
             {/* Quick Grab-and-Go 88 */}
 
-            <div className="meal-table-box">
+
+            {
+                buyproduct?.map((itemquick)=> (
+                     <div className="meal-table-box"  key={itemquick._id}>
             <div className="meal-table-images">
                 <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759094992/512a1066dcba1d8777e637f5131ee42e5a6b30f6_fgpks0.jpg" alt=""  className='meal-table-images-image'/>
                 <div className="meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />1,500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='naira' alt="" />{itemquick.price}</span>
                 </div>
             </div>
             <div className="meal-table-images-text">
                 <div className="text-00091">
-                    <p>Sausage Roll</p>
+                    <p>{itemquick.productName}</p>
                 </div>
                 <div className="text-00092-cart">
                     <div className="text-cart-text">
@@ -291,9 +175,13 @@ const HeritageKitchen = () => {
                 </div>
             </div>
             <div className="meal-table-images-text-btn">
-                <button className='btn00091'  onClick={()=> setModel(true)}>Order Now</button>
+                <button className='btn00091'  onClick={()=> {setModel(true); setSelectedProduct(itemquick);}}>Order Now</button>
             </div>
             </div>
+                ))
+            }
+
+           
 
             {/* Quick Grab-and-Go 88 */}
             
@@ -314,16 +202,18 @@ const HeritageKitchen = () => {
             <div className="Beverage-meal-table-cover">
 
 
-            <div className="Beverage-meal-table-box">
-            <div className="Beverage-meal-table-images">
+                {
+                    product?.map((items)=> (
+                        <div className="Beverage-meal-table-box" key={items._id}>
+                    <div className="Beverage-meal-table-images">
                 <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759095543/bab6f1e994869aed15f8cf6418867e76f5200532_nyze0v.jpg" alt=""  className='Beverage-meal-table-images-image'/>
                 <div className="Beverage-meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Beverage-naira' alt="" />500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='Beverage-naira' alt="" />{items.price}</span>
                 </div>
-            </div>
-            <div className="Beverage-meal-table-images-text">
+                 </div>
+                <div className="Beverage-meal-table-images-text">
                 <div className="Beverage-text-00091">
-                    <p>Bottle Water</p>
+                    <p>{items.productName}</p>
                 </div>
                 <div className="Beverage-text-00092-cart">
                     <div className="Beverage-text-cart-text">
@@ -334,11 +224,14 @@ const HeritageKitchen = () => {
                     </div>
                     
                 </div>
-            </div>
-            <div className="Beverage-meal-table-images-text-btn">
-                <button className='Beverage-btn00091'  onClick={()=> setModel(true)}>Order Now</button>
-            </div>
-            </div>
+                </div>
+                <div className="Beverage-meal-table-images-text-btn">
+                <button className='Beverage-btn00091'  onClick={()=> {setModel(true); setSelectedProduct(items);}}>Order Now</button>
+                </div>
+                 </div>
+                    ))
+                }
+            
             
             </div>
             </div>
@@ -366,7 +259,7 @@ const HeritageKitchen = () => {
                         </div>
                         <div className="model-text-wrap">
                             <div className="model-discretion">
-                                <p>Pap And Akara</p>
+                                <p>{selectedProduct.productName}</p>
                                 <span>Sausage Roll With a glass of orange juice </span>
                             </div>
                             <div className="model-drive">
@@ -375,7 +268,7 @@ const HeritageKitchen = () => {
                             </div>                          
                         </div>
                         <div className="model-price1">
-                            <span>₦2,500</span>
+                            <span>₦ {selectedProduct.price}</span>
                         </div>
                         <div className="count-payment">
                             <div className="count-model-qty">

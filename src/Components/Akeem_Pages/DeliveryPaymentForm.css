@@ -1,0 +1,122 @@
+.container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 60px 40px;
+  max-width: 900px;
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #000;
+}
+
+.location-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid #000;
+  border-radius: 24px;
+  padding: 12px 20px;
+  cursor: pointer;
+  background-color: white;
+  width: fit-content;
+  min-width: 280px;
+  margin-bottom: 32px;
+}
+
+.location-dropdown:hover {
+  background-color: #f9fafb;
+}
+
+.location-text {
+  flex: 1;
+  font-size: 16px;
+  color: #000;
+}
+
+.phone-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 2px solid #d1d5db;
+  padding-bottom: 12px;
+  max-width: 730px;
+}
+
+.phone-icon {
+  flex-shrink: 0;
+}
+
+.phone-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  color: #000;
+  background: transparent;
+}
+
+.phone-input::placeholder {
+  color: #9ca3af;
+}
+
+.payment-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px 20px;
+  cursor: pointer;
+  background-color: white;
+  max-width: 730px;
+  margin-bottom: 8px;
+}
+
+.payment-dropdown:hover {
+  border-color: #d1d5db;
+}
+
+.payment-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.payment-text {
+  font-size: 16px;
+  color: #000;
+}
+
+.required-text {
+  font-size: 14px;
+  color: #ef4444;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 24px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .location-dropdown {
+    width: 100%;
+  }
+
+  .phone-input-wrapper {
+    max-width: 100%;
+  }
+
+  .payment-dropdown {
+    max-width: 100%;
+  }
+}

@@ -1,5 +1,5 @@
 .standout_cont {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   height: 100vh;
   width: 100%;
   display: flex;
@@ -8,7 +8,7 @@
 }
 
 .standout_child {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   width: 100%;
   max-width: 95%;
   height: 100%;
@@ -20,8 +20,12 @@
 }
 
 .standout_cards_cont {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   width: 100%;
+}
+
+.standout_heading {
+  font-size: 3rem;
 }
 
 @media screen and (max-width: 652px) {
@@ -47,7 +51,7 @@
   }
 
   .standout_heading {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
 
   .standout_paragraph {

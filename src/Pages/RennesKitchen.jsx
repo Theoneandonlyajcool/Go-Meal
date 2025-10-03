@@ -1,14 +1,67 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdCancel, MdOutlineShoppingCart } from "react-icons/md";
 import { IoStar } from "react-icons/io5";
 import { IoCarSportSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import "./RennesKitchen.css"
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const RennesKitchen = () => {
 
+    const [getproduct, setGetproduct] = useState([]);
+    const [buyproduct, setBuyproduct] = useState([]);
+    const [product, setProduct] = useState([]);
+
     const [model, setModel] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null)
+    console.log("here oooooo",selectedProduct)
+
+     const Classickay = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c5c890bbac3b5f76aa")
+            setGetproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Classickay()
+    }, [])
+
+    const Quick = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c5c890bbac3b5f76ab")
+            setBuyproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Quick()
+    }, [])
+
+
+    const Beverage = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c5c890bbac3b5f76ac")
+            setProduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Beverage()
+    }, [])
 
   const navigate = useNavigate()
 
@@ -55,16 +108,18 @@ const RennesKitchen = () => {
 
             {/* Classic & Comfort Breakfasts 66 */}
 
-            <div className="renne-meal-table-box">
+            {
+               getproduct?.map((items)=> (
+                     <div className="renne-meal-table-box">
             <div className="renne-meal-table-images">
                 <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759232593/5984649553a31dcf921c89f5304c86f3_irdbk4.jpg" alt=""  className='renne-meal-table-images-image'/>
                 <div className="renne-meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='renne-naira' alt="" />1,500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='renne-naira' alt="" />{items.price}</span>
                 </div>
             </div>
             <div className="renne-meal-table-images-text">
                 <div className="renne-text-00091">
-                    <p>Pancake with Egg</p>
+                    <p>{items.productName}</p>
                 </div>
                 <div className="renne-text-00092-cart">
                     <div className="renne-text-cart-text">
@@ -77,9 +132,12 @@ const RennesKitchen = () => {
                 </div>
             </div>
             <div className="renne-meal-table-images-text-btn">
-                <button className='renne-btn00091'  onClick={()=> setModel(true)}>Order Now</button>
+                <button className='renne-btn00091'  onClick={()=> {setModel(true); setSelectedProduct(items);}}>Order Now</button>
             </div>
             </div>
+               )) 
+            }
+           
             
             </div>
             {/* Classic & Comfort Breakfasts 66 ending*/}
@@ -93,16 +151,18 @@ const RennesKitchen = () => {
             
             {/* Quick Grab-and-Go 88 */}
 
-            <div className="renne-meal-table-box">
+            {
+                buyproduct?.map((itm)=> (
+                     <div className="renne-meal-table-box">
             <div className="renne-meal-table-images">
                 <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759232797/0f2080fc037eed5073c96867d93c869f_1_z7h4if.jpg" alt=""  className='renne-meal-table-images-image'/>
                 <div className="renne-meal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='renne-naira' alt="" />1,500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='renne-naira' alt="" />{itm.price}</span>
                 </div>
             </div>
             <div className="renne-meal-table-images-text">
                 <div className="renne-text-00091">
-                    <p>Scrambled Bowl</p>
+                    <p>{itm.productName}</p>
                 </div>
                 <div className="renne-text-00092-cart">
                     <div className="renne-text-cart-text">
@@ -115,9 +175,13 @@ const RennesKitchen = () => {
                 </div>
             </div>
             <div className="renne-meal-table-images-text-btn">
-                <button className='renne-btn00091'  onClick={()=> setModel(true)}>Order Now</button>
+                <button className='renne-btn00091'  onClick={()=> {setModel(true); setSelectedProduct(itm);}}>Order Now</button>
             </div>
             </div>
+                ))
+            }
+
+           
 
             {/* Quick Grab-and-Go 88 */}
             
@@ -137,17 +201,18 @@ const RennesKitchen = () => {
             </div>
             <div className="renne-gomeal-table-cover">
 
-
-            <div className="renne-gomeal-table-box">
+            {
+                product?.map((prod)=> (
+                    <div className="renne-gomeal-table-box" key={prod._id}>
             <div className="renne-gomeal-table-images">
                 <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759095543/bab6f1e994869aed15f8cf6418867e76f5200532_nyze0v.jpg" alt=""  className='renne-gomeal-table-images-image'/>
                 <div className="renne-gomeal-table-images-price">
-                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='renne-gonaira' alt="" />500</span>
+                    <span> <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759093602/mdi_naira_ekest5.png" className='renne-gonaira' alt="" />{prod.price}</span>
                 </div>
             </div>
             <div className="renne-gomeal-table-images-text">
                 <div className="renne-gotext-00091">
-                    <p>Bottle Water</p>
+                    <p>{prod.productName}</p>
                 </div>
                 <div className="renne-gotext-00092-cart">
                     <div className="renne-gotext-cart-text">
@@ -160,9 +225,13 @@ const RennesKitchen = () => {
                 </div>
             </div>
             <div className="renne-gomeal-table-images-text-btn">
-                <button className='renne-gobtn00091'  onClick={()=> setModel(true)}>Order Now</button>
+                <button className='renne-gobtn00091'  onClick={()=> {setModel(true); setSelectedProduct(prod);}}>Order Now</button>
             </div>
             </div>
+                ))
+            }
+
+          
             
             </div>
             </div>
@@ -190,7 +259,7 @@ const RennesKitchen = () => {
                         </div>
                         <div className="model-text-wrap">
                             <div className="model-discretion">
-                                <p>Pap And Akara</p>
+                                <p>{selectedProduct.productName}</p>
                                 <span>Sausage Roll With a glass of orange juice </span>
                             </div>
                             <div className="model-drive">
@@ -199,7 +268,7 @@ const RennesKitchen = () => {
                             </div>                          
                         </div>
                         <div className="model-price1">
-                            <span>₦2,500</span>
+                            <span>₦ {selectedProduct.price}</span>
                         </div>
                         <div className="count-payment">
                             <div className="count-model-qty">
