@@ -1,5 +1,5 @@
-import React from "react";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import React, { useEffect, useState } from "react";
+import { MdCancel, MdOutlineShoppingCart } from "react-icons/md";
 import { IoStar } from "react-icons/io5";
 import { IoCarSportSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -152,6 +152,10 @@ const KaylizsKitchen = () => {
                 <button className="Kayliz-btn00091">Order Now</button>
               </div>
             </div>
+                ))
+            }
+
+            
 
             {/* Quick Grab-and-Go 88 */}
           </div>

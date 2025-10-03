@@ -152,6 +152,10 @@ const RennesKitchen = () => {
                 <button className="renne-btn00091">Order Now</button>
               </div>
             </div>
+                ))
+            }
+
+           
 
             {/* Quick Grab-and-Go 88 */}
           </div>
@@ -210,6 +214,49 @@ const RennesKitchen = () => {
         </div>
         <Footer />
       </div>
+
+
+
+
+
+
+      {
+            model && (
+                <div className="model-background-back">
+                    <div className="model-block01">
+                    <div className="image-holder-model">
+                        <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759413064/748750610b538c0315d185d9820a2fdfee97cf45_czkpwe.jpg" alt=""  className='model-img'/>
+
+                        <div className="close-model-22" >
+                            <MdCancel  onClick={()=> setModel(false)}/>
+                        </div>
+                        <div className="model-text-wrap">
+                            <div className="model-discretion">
+                                <p>{selectedProduct.productName}</p>
+                                <span>Sausage Roll With a glass of orange juice </span>
+                            </div>
+                            <div className="model-drive">
+                                <span className='molde-car01'><IoCarSportSharp /></span>
+                                <span>20 - 30 mins</span>
+                            </div>                          
+                        </div>
+                        <div className="model-price1">
+                            <span>₦ {selectedProduct.price}</span>
+                        </div>
+                        <div className="count-payment">
+                            <div className="count-model-qty">
+                                <span>-</span>
+                                <span>1</span>
+                                <span>+</span>
+                            </div>
+                            <button>Proceed to checkout</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            )
+        }
+
     </>
   );
 };

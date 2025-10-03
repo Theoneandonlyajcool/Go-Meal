@@ -1,14 +1,69 @@
-import React from "react";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import React, { useEffect, useState } from 'react'
+import { MdCancel, MdOutlineShoppingCart } from "react-icons/md";
 import { IoStar } from "react-icons/io5";
 import { IoCarSportSharp } from "react-icons/io5";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import "./MamaKitchen.css";
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header/Header";
+import axios from 'axios';
 
 const MamaKitchen = () => {
-  const navigate = useNavigate();
+
+  const [getproduct, setGetproduct] = useState([]);
+  const [buyproduct, setBuyproduct] = useState([]);
+  const [product, setProduct] = useState([]);
+
+  const [model, setModel] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null)
+
+   const Classickay = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c5c890bbac3b5f76b0")
+            setGetproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Classickay()
+    }, [])
+
+    const Quick = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c5c890bbac3b5f76b1")
+            setBuyproduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Quick()
+    }, [])
+
+
+    const Beverage = async ()=> {
+        try{
+            const res = await axios.get("https://go-meal-group3-projectwork.onrender.com/api/v1/products/category/68de62c5c890bbac3b5f76b2")
+            setProduct(res.data.data)
+            console.log(res.data.data)
+
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=> {
+        Beverage()
+    }, [])
+
+  const navigate = useNavigate()
 
   const handleGoTopreferredKitchen = () => {
     navigate("/preffered");
@@ -75,7 +130,9 @@ const MamaKitchen = () => {
           <div className="mama-meal-table-cover">
             {/* Classic & Comfort Breakfasts 66 */}
 
-            <div className="mama-meal-table-box">
+            {
+              getproduct?.map((card)=> (
+                  <div className="mama-meal-table-box">
               <div className="mama-meal-table-images">
                 <img
                   src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759058700/8c4601b386613c4a722b00ea8c3c92d64bad0fd3_ieghwd.jpg"
@@ -90,13 +147,13 @@ const MamaKitchen = () => {
                       className="mama-naira"
                       alt=""
                     />
-                    1,500
+                    {card.price}
                   </span>
                 </div>
               </div>
               <div className="mama-meal-table-images-text">
                 <div className="mama-text-00091">
-                  <p>Custard and Akara</p>
+                  <p>{card.productName}</p>
                 </div>
                 <div className="mama-text-00092-cart">
                   <div className="mama-text-cart-text">
@@ -106,11 +163,14 @@ const MamaKitchen = () => {
                     <MdOutlineShoppingCart />
                   </div>
                 </div>
-              </div>
-              <div className="mama-meal-table-images-text-btn">
-                <button className="mama-btn00091">Order Now</button>
-              </div>
             </div>
+            <div className="mama-meal-table-images-text-btn">
+                <button className='mama-btn00091'  onClick={()=> {setModel(true); setSelectedProduct(card);}}>Order Now</button>
+            </div>
+            </div>
+              ))
+            }
+            
           </div>
           {/* Classic & Comfort Breakfasts 66 ending*/}
 
@@ -153,10 +213,10 @@ const MamaKitchen = () => {
                     <MdOutlineShoppingCart />
                   </div>
                 </div>
-              </div>
-              <div className="mama-meal-table-images-text-btn">
-                <button className="mama-btn00091">Order Now</button>
-              </div>
+            </div>
+            <div className="mama-meal-table-images-text-btn">
+                <button className='mama-btn00091'  onClick={()=> {setModel(true); setSelectedProduct(card);}}>Order Now</button>
+            </div>
             </div>
 
             {/* Quick Grab-and-Go 88 */}
@@ -174,8 +234,12 @@ const MamaKitchen = () => {
                 <p>Beverage Add-Ons</p>
               </div>
             </div>
+
             <div className="mama-Beverage-meal-table-cover">
-              <div className="mama-Beverage-meal-table-box">
+
+              {
+                product?.map((good)=> (
+                  <div className="mama-Beverage-meal-table-box" key={good._id}>
                 <div className="mama-Beverage-meal-table-images">
                   <img
                     src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759095543/bab6f1e994869aed15f8cf6418867e76f5200532_nyze0v.jpg"
@@ -190,13 +254,13 @@ const MamaKitchen = () => {
                         className="mama-Beverage-naira"
                         alt=""
                       />
-                      500
+                      {good.price}
                     </span>
                   </div>
                 </div>
                 <div className="mama-Beverage-meal-table-images-text">
                   <div className="mama-Beverage-text-00091">
-                    <p>Bottle Water</p>
+                    <p>{good.productName}</p>
                   </div>
                   <div className="mama-Beverage-text-00092-cart">
                     <div className="mama-Beverage-text-cart-text">
@@ -205,16 +269,62 @@ const MamaKitchen = () => {
                     <div className="mama-Beverage-text-cart-icons">
                       <MdOutlineShoppingCart />
                     </div>
-                  </div>
+                    
                 </div>
-                <div className="mama-Beverage-meal-table-images-text-btn">
-                  <button className="mama-Beverage-btn00091">Order Now</button>
-                </div>
-              </div>
+            </div>
+            <div className="mama-Beverage-meal-table-images-text-btn">
+                <button className='mama-Beverage-btn00091' onClick={()=> {setModel(true); setSelectedProduct(good);}}>Order Now</button>
+            </div>
+            </div>
+                ))
+              }
+              
+            
             </div>
           </div>
         </div>
       </div>
+
+
+
+
+      {
+            model && (
+                <div className="model-background-back">
+                    <div className="model-block01">
+                    <div className="image-holder-model">
+                        <img src="https://res.cloudinary.com/dmqhseusw/image/upload/v1759413064/748750610b538c0315d185d9820a2fdfee97cf45_czkpwe.jpg" alt=""  className='model-img'/>
+
+                        <div className="close-model-22" >
+                            <MdCancel  onClick={()=> setModel(false)}/>
+                        </div>
+                        <div className="model-text-wrap">
+                            <div className="model-discretion">
+                                <p>{selectedProduct.productName}</p>
+                                <span>Sausage Roll With a glass of orange juice </span>
+                            </div>
+                            <div className="model-drive">
+                                <span className='molde-car01'><IoCarSportSharp /></span>
+                                <span>20 - 30 mins</span>
+                            </div>                          
+                        </div>
+                        <div className="model-price1">
+                            <span>₦ {selectedProduct.price}</span>
+                        </div>
+                        <div className="count-payment">
+                            <div className="count-model-qty">
+                                <span>-</span>
+                                <span>1</span>
+                                <span>+</span>
+                            </div>
+                            <button>Proceed to checkout</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            )
+        }
+
     </>
   );
 };
