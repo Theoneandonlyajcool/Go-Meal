@@ -1,0 +1,414 @@
+.Successstory-block {
+  width: 100%;
+  height: 82vh;
+  background-color: black;
+}
+
+.Successstory-rapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.arrow1 {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.direction-arrow-left {
+  width: 26%;
+  height: 10%;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.Successstory-rapper2 {
+  width: 72%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-content: center;
+}
+
+.arrow2 {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.story-titile {
+  width: 100%;
+  height: 15%;
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.writeup-cover {
+  width: 100%;
+  height: 82%;
+  display: flex;
+}
+
+.pic-text-story {
+  width: 40%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-pic {
+  width: 40%;
+  height: 35%;
+  border-radius: 50%;
+}
+
+.profilestoryimage01 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.success-rate {
+  display: flex;
+  gap: 10px;
+}
+
+.pic-text-story-h1 {
+  color: #fff;
+  font-family: Inter;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.pic-text-story-span {
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.success-rate {
+  width: 70%;
+  height: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+.success-rate > span {
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.success-star-5 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  color: #ffa600;
+  font-size: 20px;
+}
+
+.writeup-text-story {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.The-Challenge {
+  width: 100%;
+  height: 30%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.The-Challenge > p {
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.The-Partnership {
+  width: 100%;
+  height: 35%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.The-Partnership > p {
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.Testimonial {
+  width: 100%;
+  height: 30%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.Testimonial > p {
+  color: #fff;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+@media (max-width: 768px) {
+  .Successstory-block {
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+
+  .Successstory-rapper {
+    position: relative;
+  }
+
+  .arrow1 {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    height: auto;
+    z-index: 10;
+  }
+
+  .arrow2 {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;
+    height: auto;
+    z-index: 10;
+  }
+
+  .direction-arrow-left {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .Successstory-rapper2 {
+    width: 100%;
+  }
+
+  .story-titile {
+    font-size: 14px;
+    height: auto;
+    padding: 15px 20px;
+    letter-spacing: 1.5px;
+  }
+
+  .writeup-cover {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .pic-text-story {
+    width: 100%;
+    height: auto;
+    padding: 30px 20px;
+    gap: 12px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  .pic-text-story-h1 {
+    font-size: 18px;
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  .pic-text-story-span {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .success-rate {
+    width: 100%;
+    height: auto;
+    gap: 8px;
+    flex-direction: column;
+  }
+
+  .success-rate > span {
+    font-size: 13px;
+  }
+
+  .success-star-5 {
+    width: auto;
+    height: auto;
+    gap: 4px;
+    font-size: 16px;
+  }
+
+  .writeup-text-story {
+    width: 100%;
+    height: auto;
+    padding: 0 20px 30px 20px;
+    gap: 25px;
+  }
+
+  .The-Challenge,
+  .The-Partnership,
+  .Testimonial {
+    height: auto;
+    gap: 12px;
+  }
+
+  .The-Challenge > p,
+  .The-Partnership > p,
+  .Testimonial > p {
+    font-size: 16px;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .The-Challenge,
+  .The-Partnership,
+  .Testimonial {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-titile {
+    font-size: 12px;
+    padding: 12px 15px;
+  }
+
+  .pic-text-story {
+    padding: 25px 15px;
+    gap: 10px;
+  }
+
+  .profile-pic {
+    width: 70px;
+    height: 70px;
+  }
+
+  .pic-text-story-h1 {
+    font-size: 16px;
+  }
+
+  .pic-text-story-span {
+    font-size: 12px;
+  }
+
+  .success-rate > span {
+    font-size: 12px;
+  }
+
+  .success-star-5 {
+    font-size: 14px;
+    gap: 3px;
+  }
+
+  .writeup-text-story {
+    padding: 0 15px 25px 15px;
+    gap: 20px;
+  }
+
+  .The-Challenge > p,
+  .The-Partnership > p,
+  .Testimonial > p {
+    font-size: 14px;
+  }
+
+  .The-Challenge,
+  .The-Partnership,
+  .Testimonial {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .direction-arrow-left {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+
+  .arrow1 {
+    left: 15px;
+  }
+
+  .arrow2 {
+    right: 15px;
+  }
+}
