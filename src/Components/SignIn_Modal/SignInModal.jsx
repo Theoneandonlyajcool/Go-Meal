@@ -13,15 +13,66 @@ const SignInModal = ({ closeSignInModal, openSignUpModal }) => {
     psw: "",
   });
 
+  const [SignInErrorMessages, SetSignInErrorMessages] = useState({
+    EmailError: "",
+    PasswordError: "",
+  });
+
   const SignInValidation = () => {
+    let newErrors = {};
+
     if (SignInInputValues.email == "") {
-      toast.error("email is required");
+      newErrors.EmailError = "Pls input your email";
+    } else if (!SignInInputValues.email.includes("@gmail.com")) {
+      newErrors.EmailError = "Invalid email address";
     }
+
+    if (SignInInputValues.psw == "") {
+      newErrors.PasswordError = "Password is required";
+    }
+
+    SetSignInErrorMessages(newErrors);
+
+    setTimeout(() => {
+      SetSignInErrorMessages({});
+    }, 4000);
+
+    return false;
+
+    // return Object.keys(newErrors).length === 0;
+
+    // const email = (SignInInputValues.email || "").trim();
+    // const psw = (SignInInputValues.psw || "").trim();
+    // const emailRegex = /^\S+@\S+\.\S+$/;
+
+    // if (email === "" && psw === "") {
+    //   toast.error("All fields are required");
+    //   return false;
+    // } else if (email === "" && psw !== "") {
+    //   toast.error("Email is required");
+    //   return false;
+    // } else if (email !== "" && psw === "") {
+    //   toast.error("Password is required");
+    //   return false;
+    // } else if (!emailRegex.test(email)) {
+    //   toast.error("Invalid email address");
+    //   return false;
+    // } else if (psw.length < 8) {
+    //   toast.error("Password must be at least 8 characters");
+    //   return false;
+    // }
+
+    return true;
   };
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    SignInValidation();
+
+    if (SignInValidation()) {
+      console.log("Submit");
+    } else {
+      console.log("Error");
+    }
   };
 
   return (
@@ -89,6 +140,9 @@ const SignInModal = ({ closeSignInModal, openSignUpModal }) => {
               <label htmlFor="Email">Email</label>
               <input type="text" className="sign_in_inputs" />
             </div>
+            <p style={{ height: "1rem", fontSize: "1.2rem", color: "red" }}>
+              {SignInErrorMessages.EmailError}
+            </p>
 
             {/* password */}
             <div className="sign_in_psw_input">
@@ -105,6 +159,17 @@ const SignInModal = ({ closeSignInModal, openSignUpModal }) => {
                   {ShowPsw ? <FaEye /> : <FaEyeLowVision />}
                 </div>
               </div>
+
+              <p
+                style={{
+                  color: "red",
+                  height: "1rem",
+                  fontSize: "1.2rem",
+                  alignSelf: "center",
+                }}
+              >
+                {SignInErrorMessages.PasswordError}
+              </p>
             </div>
             <p style={{ alignSelf: "end" }}>Forgot Password?</p>
 
