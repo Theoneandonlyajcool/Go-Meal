@@ -1,0 +1,160 @@
+/* Payment Modal Content */
+.payment-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.payment-title {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Payment Options */
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border: 2px solid #e5e5e5;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-option:hover {
+  border-color: #d1d1d1;
+  background-color: #fafafa;
+}
+
+.payment-option:has(input:checked) {
+  border-color: #ff5722;
+  background-color: #fff5f3;
+}
+
+.option-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.option-icon {
+  width: 24px;
+  height: 24px;
+  color: #4a4a4a;
+}
+
+.option-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+/* Custom Radio Button */
+.payment-radio {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-custom {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ff5722;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.payment-radio:checked + .radio-custom {
+  background-color: #ff5722;
+  border-color: #ff5722;
+}
+
+.payment-radio:checked + .radio-custom::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* Payment Actions */
+.payment-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-choose {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-choose:hover {
+  background-color: #f44336;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+.btn-choose:active {
+  transform: translateY(0);
+}
+
+.btn-back {
+  background-color: transparent;
+  color: #ff5722;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: #fff5f3;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .payment-title {
+    font-size: 20px;
+  }
+
+  .payment-option {
+    padding: 16px;
+  }
+
+  .option-text {
+    font-size: 14px;
+  }
+
+  .btn-choose {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+}
